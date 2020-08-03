@@ -1,0 +1,106 @@
+---
+title: "Developing Data Products: Week 4 Project"
+author: "Vanessa Drury"
+date: "8/3/2020"
+output: ioslides_presentation
+runtime: shiny
+---
+
+## Summary
+My shiny app is called "Create Your Own Confetti Cannon". It uses basic plotting of randomized coordinates to create a "confetti blast". Customizable features include:  
+
+- window of explosion  
+- number of confetti pieces  
+- color of confetti pieces  
+- shape of confetti pieces  
+- size of confetti pieces  
+- title of plot  
+
+
+## ui.R Code
+The ui.R script features code for a sidebar with: 
+
+- numeric input window for pieces of confetti  
+
+- slider input for:  
+    - X axis boundaries  
+    - Y axis boundaries  
+    
+- select input for:  
+    - confetti colors (6 options, up to 6 selections possible)  
+    - confetti shape (4 options, 1 selection possible)  
+    - confetti size (3 options, 1 selection possible)  
+    - title of plot (3 options, 1 selection possible)  
+
+
+## server.R Code
+The server.R script takes input from ui.R to render the final plot. 
+
+- X and Y boundaries slider input determines the plot's   `min/max X, min/max Y`  
+- color determines plot point `color` (randomized when more than 1 color is selected)  
+- shape determines plot point `pch`  
+- size determines plot point `cex`  
+- title determines plot label `main`  
+
+
+## [Shiny app](https://vedrury.shinyapps.io/DDPWeek4/)
+```{r, echo=FALSE}
+shinyApp(
+
+# Define UI for application that creates a confetti cannon
+shinyUI(fluidPage(
+    # Application title
+    titlePanel("Create Your Own Confetti Cannon"),
+
+    # Sidebar with customizable features
+    sidebarLayout(
+        sidebarPanel(
+            numericInput("numeric","Choose number of confetti pieces",
+                         value=1000, min=1,max=1000,step=1),
+            sliderInput("sliderx","Set explosion length", 
+                        -100,100,value=c(-50,50)),
+            sliderInput("slidery","set explosion height", 
+                        -100,100,value=c(-50,50)),
+            selectInput("colors", "Choose confetti colors", c("pink", "blue", "red", "green", "gold", "purple"), selected = "pink", multiple = T),
+            selectInput("shape", "Choose confetti shape", c("circle", "square", "triangle", "star"), selected = "circle", multiple = F),
+            selectInput("size", "Choose confetti size", c("small", "medium", "large"), selected = "medium", multiple = F),
+            selectInput("title", "Choose title", c("Congratulations!", "Happy Birthday!", "Great Job!"), selected = "Congratulations!", multiple = F),
+        ),
+        mainPanel(plotOutput("plot1"))
+        )
+    ))   ,
+        
+shinyServer(function(input, output) {
+    output$plot1 = renderPlot({
+        set.seed(123123)
+        confetti<- input$numeric
+        minx<- input$sliderx[1]
+        maxx<- input$sliderx[2]
+        miny<- input$slidery[1]
+        maxy<- input$slidery[2]
+        datax<-runif(confetti,minx,maxx)
+        datay<-runif(confetti,miny,maxy)
+        if(input$shape=="circle")
+        {shape<-19}
+        else if(input$shape=="square")
+        {shape<-15}
+        else if(input$shape=="triangle")
+        {shape<-17}
+        else if(input$shape=="star")
+        {shape<-8}
+        if(input$size=="small")
+        {size<-.75}
+        else if(input$size=="medium")
+        {size<-1}
+        else if(input$size=="large")
+        {size<-1.5}
+        plot(datax,datay,pch=shape,
+             col=input$colors,cex=size, main=input$title, cex.main=3,
+             axes=F, xlab="",ylab="", xlim=c(-100,100),ylim=c(-100,100))
+    })
+    
+} ) 
+)
+               
+```
+

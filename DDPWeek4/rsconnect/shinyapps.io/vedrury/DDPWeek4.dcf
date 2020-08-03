@@ -1,0 +1,12 @@
+name: DDPWeek4
+title: DDPWeek4
+username:
+account: vedrury
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2625808
+bundleId: 3452502
+url: https://vedrury.shinyapps.io/DDPWeek4/
+when: 1596065315.53872
+asMultiple: FALSE
+asStatic: FALSE
