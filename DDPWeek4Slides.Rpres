@@ -1,4 +1,4 @@
-Developing Data Projects Week4 Project
+Developing Data Projects Week 4 Project
 ========================================================
 author: Vanessa Drury
 date: August 3, 2020
@@ -40,7 +40,19 @@ The server.R script takes input from ui.R to render the final plot.
 
 ===============
 ## [Shiny app](https://vedrury.shinyapps.io/DDPWeek4/)
-Follow link in title to try the application.
+```{r, original plot, echo=F}
+ set.seed(123123)
+ datax<-runif(1000,-100,100)
+datay<-runif(1000,-100,100)
+plot(datax,datay, xlab="",ylab="", xlim=c(-100,100),ylim=c(-100,100))
+```
+***
+  
+  
 
-The [ui.R script](https://github.com/vedrury/DDPWeek4/blob/master/DDPWeek4/ui.R) and [server.R](https://github.com/vedrury/DDPWeek4/blob/master/DDPWeek4/server.R) can be found at at [this github repo](https://github.com/vedrury/DDPWeek4/tree/master/DDPWeek4)
+Here is the original plot the application was based on. 
+  
+  Follow the link in title to try the customized app. 
+  
+ The [ui.R script](https://github.com/vedrury/DDPWeek4/blob/master/DDPWeek4/ui.R) and [server.R](https://github.com/vedrury/DDPWeek4/blob/master/DDPWeek4/server.R) can be found at [this github repo](https://github.com/vedrury/DDPWeek4/tree/master/DDPWeek4).
 
