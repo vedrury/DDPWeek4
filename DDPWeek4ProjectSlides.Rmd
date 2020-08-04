@@ -45,6 +45,8 @@ The server.R script takes input from ui.R to render the final plot.
 
 ## [Shiny app](https://vedrury.shinyapps.io/DDPWeek4/)
 ```{r, echo=FALSE}
+library(shiny)
+library(rmarkdown)
 shinyApp(
 
 # Define UI for application that creates a confetti cannon

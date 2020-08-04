@@ -1,0 +1,46 @@
+Developing Data Projects Week4 Project
+========================================================
+author: Vanessa Drury
+date: August 3, 2020
+autosize: true
+
+===============
+## Summary
+My shiny app is called "Create Your Own Confetti Cannon". It uses basic plotting of randomized coordinates to create a "confetti blast". Customizable features include:  
+
+- window of explosion  
+- number of confetti pieces  
+- color of confetti pieces  
+- shape of confetti pieces  
+- size of confetti pieces  
+- title of plot  
+
+===============
+## ui.R Code
+The ui.R script features code for a sidebar with: 
+- numeric input window for pieces of confetti  
+- slider input for:  
+    - X axis boundaries  
+    - Y axis boundaries  
+- select input for:  
+    - confetti colors (6 options, up to 6 selections possible)  
+    - confetti shape (4 options, 1 selection possible)  
+    - confetti size (3 options, 1 selection possible)  
+    - title of plot (3 options, 1 selection possible)  
+
+===============
+## server.R Code
+The server.R script takes input from ui.R to render the final plot. 
+
+- X and Y boundaries slider input determines the plot's   `min/max X, min/max Y`  
+- color determines plot point `color` (randomized when more than 1 color is selected)  
+- shape determines plot point `pch`  
+- size determines plot point `cex`  
+- title determines plot label `main`  
+
+===============
+## [Shiny app](https://vedrury.shinyapps.io/DDPWeek4/)
+Follow link in title to try the application.
+
+The [ui.R script](https://github.com/vedrury/DDPWeek4/blob/master/DDPWeek4/ui.R) and [server.R](https://github.com/vedrury/DDPWeek4/blob/master/DDPWeek4/server.R) can be found at at [this github repo](https://github.com/vedrury/DDPWeek4/tree/master/DDPWeek4)
+
